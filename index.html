@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ЗЕРКАЛО детейлинг</title>
+<meta name="description" content="Студия детейлинга «Зеркало»: ручная мойка, полировка, керамика, плёнка и химчистка салона. Онлайн-запись и калькулятор стоимости.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500&family=Onest:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="spot" id="spot" aria-hidden="true"></div>
+
+<header class="top">
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="ЗЕРКАЛО, на главную"><i aria-hidden="true"></i><b>ЗЕРКАЛО</b></a>
+    <ul class="nav-links">
+      <li><a href="#services">Услуги</a></li>
+      <li><a href="#works">Наши работы</a></li>
+      <li><a href="#calc">Калькулятор</a></li>
+      <li><a href="#hydro">Тест керамики</a></li>
+      <li><a href="#plans">Абонементы</a></li>
+      <li><a href="#faq">Вопросы</a></li>
+    </ul>
+    <a class="btn" href="#book">Записаться</a>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="mm" aria-label="Меню"><i></i><i></i></button>
+  </div>
+  <nav class="wrap mobile-menu" id="mm" hidden>
+    <a href="#services">Услуги</a><a href="#works">Наши работы</a><a href="#calc">Калькулятор</a><a href="#plans">Абонементы</a><a href="#book">Записаться</a>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero" aria-label="Главный экран">
+    <canvas id="bay" aria-hidden="true"></canvas>
+    <div class="wrap hero-in">
+      <div>
+        <span class="eyebrow" data-decode>Студия детейлинга · 6 боксов · 9:00–22:00</span>
+        <h1 class="wipe" style="--d:150ms">Возвращаем кузову<br><span class="rot" id="rot"><span class="on">глубину</span><span>блеск</span><span>цвет</span><span>защиту</span></span></h1>
+        <p class="lead sweep" style="--d:600ms">Моем вручную, полируем, наносим керамику и клеим плёнку. Один мастер ведёт машину от приёмки до выдачи, а работу вы принимаете под светом ламп.</p>
+        <div class="hero-ctas fade" style="--d:900ms">
+          <a class="btn" href="#book">Записаться онлайн <span aria-hidden="true">→</span></a>
+          <a class="btn ghost" href="#works">Смотреть работы</a>
+        </div>
+        <div class="live fade" style="--d:1100ms"><i aria-hidden="true"></i><span id="liveTxt">Сегодня есть свободные окна</span></div>
+      </div>
+      <div class="hero-art" id="art">
+        <div class="art-shaft"></div><div class="art-glow"></div>
+        <div class="art-move" id="artMove">
+          <canvas class="art-refl" id="artRefl" aria-hidden="true"></canvas>
+          <div class="art-shadow"></div>
+          <div class="art-frame"><video id="artVid" muted loop playsinline preload="auto" poster="assets/hero-poster.webp" aria-label="Мастер моет колесо белого седана в пене"></video><div class="art-lift"></div><div class="art-tint"></div></div>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat fade" style="--d:200ms"><span class="k">Машин с 2019 года</span><b><span data-count="4800">0</span></b></div>
+        <div class="stat fade" style="--d:300ms"><span class="k">Гостей возвращаются</span><b><span data-count="98">0</span><small>%</small></b></div>
+        <div class="stat fade" style="--d:400ms"><span class="k">Гарантия на керамику</span><b><span data-count="5">0</span><small>лет</small></b></div>
+        <div class="stat fade" style="--d:500ms"><span class="k">Оценка по 1 240 отзывам</span><b><span data-count="4.9" data-dec="1">0</span><small>/ 5</small></b></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-label="Популярные услуги, наведите для цены"><div class="marquee-track" id="mqTrack"></div></div>
+
+  <section id="services" class="amb">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="eyebrow" data-decode>Услуги</span><h2 class="wipe">Уход за <em>кузовом</em> и&nbsp;салоном</h2></div>
+        <p class="lead sweep">Цены указаны для седана. Кроссовер считаем с коэффициентом 1,2, внедорожник и минивэн с 1,4. Точную сумму покажет калькулятор.</p>
+      </div>
+      <div class="tabs" role="tablist" id="tabs"></div>
+      <div id="svcPanel" class="svc-panel" role="tabpanel"></div>
+    </div>
+  </section>
+
+  <section id="works" class="alt amb" style="--ax:90%;--ay:10%">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="eyebrow" data-decode>Наши работы</span><h2 class="wipe">Работа мастеров <em>до&nbsp;и&nbsp;после</em></h2></div>
+        <p class="lead sweep">Проведите курсором по любой работе, чтобы увидеть, какой машина приехала. На телефоне коснитесь фото.</p>
+      </div>
+      <div class="filters" id="filters"></div>
+      <div class="gallery" id="gallery">
+        <figure class="tile big fade" data-tags="Полировка Керамика"><img class="ph" src="assets/ceramic-coupe-before.webp" alt="Капот чёрного купе до работ: лак в мелких царапинах и паутинке"><img class="ph after" src="assets/ceramic-coupe-after.webp" alt="Тот же капот после полировки и керамики: ровный глубокий чёрный без царапин"><div class="handle"></div><span class="lbl l">До</span><span class="lbl r">После</span><figcaption><div><b>Купе, чёрный металлик</b><span>Полировка в три шага и керамика · 2 дня</span></div><small>Керамика</small></figcaption></figure>
+        <figure class="tile mid fade" style="--d:100ms" data-tags="Плёнка"><img class="ph" src="assets/sedan-red-before.webp" alt="Дверь гранатового седана до работ: грязь, царапины и сколы"><img class="ph after" src="assets/sedan-red-after.webp" alt="Та же дверь после работ: чистый яркий лак с глубоким блеском"><div class="handle"></div><span class="lbl l">До</span><span class="lbl r">После</span><figcaption><div><b>Седан, гранатовый</b><span>Плёнка на зоны риска · 2 дня</span></div><small>Плёнка</small></figcaption></figure>
+        <figure class="tile sm fade" data-tags="Керамика"><img class="ph" style="object-position:50% 45%" src="assets/sedan-navy-before.webp" alt="Крышка багажника тёмно-синего седана до работ: разводы, капли и царапины"><img class="ph after" style="object-position:50% 45%" src="assets/sedan-navy-after.webp" alt="Та же крышка багажника после керамики: ровный чистый лак"><div class="handle"></div><span class="lbl l">До</span><span class="lbl r">После</span><figcaption><div><b>Седан, полночь</b><span>Керамика 9H · 1 день</span></div><small>Керамика</small></figcaption></figure>
+        <figure class="tile sm fade" style="--d:100ms" data-tags="Мойка"><img class="ph" style="object-position:50% 52%" src="assets/wash-coupe-before.webp" alt="Синее купе в боксе мойки до работ: кузов и стёкла в грязи"><img class="ph after" style="object-position:50% 52%" src="assets/wash-coupe-after.webp" alt="То же купе после двухфазной мойки: чистый блестящий синий кузов"><div class="handle"></div><span class="lbl l">До</span><span class="lbl r">После</span><figcaption><div><b>Купе, синий металлик</b><span>Двухфазная мойка · 1,5 ч</span></div><small>Мойка</small></figcaption></figure>
+        <figure class="tile sm fade" style="--d:200ms" data-tags="Полировка"><img class="ph" style="object-position:50% 55%" src="assets/polish-sedan-before.webp" alt="Чёрный седан в студии до полировки: кузов в паутинке и царапинах"><img class="ph after" style="object-position:50% 55%" src="assets/polish-sedan-after.webp" alt="Тот же седан после лёгкой полировки: глубокий чёрный лак с чистыми отражениями"><div class="handle"></div><span class="lbl l">До</span><span class="lbl r">После</span><figcaption><div><b>Седан, чёрный</b><span>Лёгкая полировка · 6 ч</span></div><small>Полировка</small></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="result">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="eyebrow" data-decode>Крупным планом</span><h2 class="wipe">Потяните <em>шторку</em></h2></div>
+        <p class="lead sweep">Слева капот после двух зим без ухода. Справа тот же капот после полировки в три шага и керамики: голограммы и паутинка ушли, цвет снова глубокий.</p>
+      </div>
+      <div class="ba-wrap">
+        <div class="ba fade" id="ba">
+          <img src="assets/hood-before.webp" alt="Капот чёрного седана до полировки: паутинка и голограммы по всему лаку"><img class="after" src="assets/hood-after.webp" alt="Тот же капот после полировки и керамики: зеркальный чёрный лак">
+          <div class="handle"></div>
+          <span class="lbl l">До</span><span class="lbl r">После</span>
+          <label class="vh" for="baRange">Положение шторки до и после</label>
+          <input type="range" id="baRange" min="0" max="100" value="50">
+        </div>
+        <div class="metrics fade" style="--d:200ms">
+          <div class="metric"><span>Глянец, GU при 60°</span><b><i>62 →</i> <em>94</em></b></div>
+          <div class="metric"><span>Снято лака</span><b>3–5 мкм</b></div>
+          <div class="metric"><span>Твёрдость покрытия</span><b><em>9H</em></b></div>
+          <div class="metric"><span>Краевой угол воды</span><b><i>48° →</i> <em>112°</em></b></div>
+          <div class="metric"><span>Срок работ</span><b>2 дня</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="hydro" class="alt amb" style="--ax:50%;--ay:0%">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="eyebrow" data-decode>Тест керамики</span><h2 class="wipe">Полейте <em>сами</em></h2></div>
+        <p class="lead sweep">Водите курсором или пальцем по панелям. Слева обычный лак: вода растекается и сохнет пятнами. Справа керамика 9H: капли собираются в шарики и скатываются, унося грязь.</p>
+      </div>
+      <div class="hydro-wrap fade">
+        <div class="hydro" data-side="raw"><canvas aria-hidden="true"></canvas><div class="tag"><b>Без защиты</b><small>краевой угол 48°</small></div></div>
+        <div class="hydro cer" data-side="cer"><canvas aria-hidden="true"></canvas><div class="tag"><b>Керамика 9H</b><small>краевой угол 112°</small></div></div>
+      </div>
+      <p class="hint">Если ничего не трогать, капли падают сами.</p>
+    </div>
+  </section>
+
+  <section id="calc" class="amb" style="--ax:85%;--ay:30%">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="eyebrow" data-decode>Калькулятор</span><h2 class="wipe">Соберите уход <em>под&nbsp;себя</em></h2></div>
+        <p class="lead sweep">Отметьте услуги, и сумма со сроком пересчитаются сразу. Набор переносится в запись одной кнопкой.</p>
+      </div>
+      <div class="calc">
+        <form id="calcForm" onsubmit="return false">
+          <fieldset class="fieldset"><legend>Класс автомобиля</legend><div class="seg" id="classes"></div></fieldset>
+          <fieldset class="fieldset"><legend>Услуги</legend><div class="opts" id="opts"></div></fieldset>
+        </form>
+        <aside class="summary fade" aria-live="polite">
+          <span class="eyebrow">Итого</span>
+          <div class="total" id="total">0 ₽</div>
+          <div class="row"><span>Услуг выбрано</span><b id="sCount">0</b></div>
+          <div class="row"><span>Срок работ</span><b id="sTime">—</b></div>
+          <div class="row"><span>Выгода с абонементом «Сияние»</span><b id="sSave">—</b></div>
+          <button class="btn" id="toBook" type="button">Записаться с этим набором →</button>
+          <p class="note">Цену фиксируем после осмотра машины, в процессе работы она не меняется.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="eyebrow" data-decode>Визит</span><h2 class="wipe">Как проходит <em>визит</em></h2></div>
+        <p class="lead sweep">Мастер присылает фото с каждого этапа в мессенджер, так что вы видите, где сейчас машина.</p>
+      </div>
+      <div class="steps">
+        <div class="step fade"><h3>Приёмка</h3><p>Осматриваем под лампами, замеряем толщину лака, фотографируем все дефекты.</p></div>
+        <div class="step fade" style="--d:80ms"><h3>Мойка</h3><p>Щелочная и кислотная пена, затем очистка глиной. Щётки и губки не используем.</p></div>
+        <div class="step fade" style="--d:160ms"><h3>Коррекция</h3><p>Полируем по зонам и после каждого шага проверяем глянец прибором.</p></div>
+        <div class="step fade" style="--d:240ms"><h3>Защита</h3><p>Наносим керамику или клеим плёнку, сушим инфракрасными лампами в закрытом боксе.</p></div>
+        <div class="step fade" style="--d:320ms"><h3>Выдача</h3><p>Показываем результат, отдаём паспорт покрытия и памятку по уходу.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="plans" class="amb" style="--ax:50%;--ay:60%">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="eyebrow" data-decode>Абонементы</span><h2 class="wipe">Чистая машина <em>каждый&nbsp;месяц</em></h2></div>
+        <p class="lead sweep">Фиксированная сумма в месяц и приоритетная запись. Мойка по абонементу не снимает защитное покрытие.</p>
+      </div>
+      <div class="plans">
+        <div class="plan fade"><h3>Лоск</h3><div class="cost">3 450 <small>₽ / мес</small></div><ul><li>2 двухфазные мойки</li><li>Пылесос и влажная уборка салона</li><li>Чернение шин</li><li>Запись за 24 часа</li></ul><a class="btn ghost" href="#book" data-plan="Абонемент «Лоск»">Оформить</a></div>
+        <div class="plan feat fade" style="--d:100ms"><span class="tag">Берут чаще всего</span><h3>Сияние</h3><div class="cost">6 450 <small>₽ / мес</small></div><ul><li>4 мойки с обновлением гидрофоба</li><li>Химчистка салона раз в квартал</li><li>Скидка 15% на полировку и керамику</li><li>Запись за 2 часа</li></ul><a class="btn" href="#book" data-plan="Абонемент «Сияние»">Оформить</a></div>
+        <div class="plan fade" style="--d:200ms"><h3>Зеркало</h3><div class="cost">12 450 <small>₽ / мес</small></div><ul><li>Мойки без ограничений</li><li>Обслуживание керамики раз в полгода</li><li>Забираем и привозим машину</li><li>Персональный мастер</li></ul><a class="btn ghost" href="#book" data-plan="Абонемент «Зеркало»">Оформить</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt amb" style="--ax:10%;--ay:50%">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="eyebrow" data-decode>Отзывы</span><h2 class="wipe">Что говорят <em>гости</em></h2></div>
+        <p class="lead sweep">1 240 отзывов с 2019 года. Отвечаем на каждый, а если что-то не так, переделываем бесплатно.</p>
+      </div>
+      <div class="reviews">
+        <div class="rev-main fade">
+          <div class="rev-track" id="revs">
+            <figure class="rev on"><div class="stars" aria-label="5 из 5">★★★★★</div><q>Забрал машину вечером и минут десять ходил вокруг. Чёрный снова стал чёрным, без серых разводов.</q><cite><span class="ava">А</span><span><b>Артём К.</b>Купе · полировка и керамика</span></cite></figure>
+            <figure class="rev"><div class="stars" aria-label="5 из 5">★★★★★</div><q>Мастер прислал фото каждой царапины ещё на приёмке. Впервые понимаю, за что плачу.</q><cite><span class="ava">О</span><span><b>Ольга Н.</b>Кроссовер · химчистка салона</span></cite></figure>
+            <figure class="rev"><div class="stars" aria-label="5 из 5">★★★★★</div><q>Хожу по абонементу второй год. Записываюсь утром, к обеду машина готова, керамика держится как в первый месяц.</q><cite><span class="ava">Д</span><span><b>Дмитрий С.</b>Седан · абонемент «Сияние»</span></cite></figure>
+          </div>
+          <div class="rev-nav"><button id="revPrev" aria-label="Предыдущий отзыв">←</button><button id="revNext" aria-label="Следующий отзыв">→</button><div class="dots" id="dots"><i class="on"></i><i></i><i></i></div></div>
+        </div>
+        <div class="rating">
+          <div class="score fade" id="score">
+            <div class="big">4,9<small>1 240 отзывов</small></div>
+            <div class="bars">
+              <div class="bar">5★<i style="--w:92%"></i><span>92%</span></div>
+              <div class="bar">4★<i style="--w:6%"></i><span>6%</span></div>
+              <div class="bar">3★<i style="--w:1%"></i><span>1%</span></div>
+              <div class="bar">2★<i style="--w:1%"></i><span>1%</span></div>
+              <div class="bar">1★<i style="--w:0%"></i><span>0%</span></div>
+            </div>
+          </div>
+          <div class="rev-col fade" style="--d:150ms" aria-label="Короткие отзывы"><div class="rev-col-track" id="revCol"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="book" class="amb" style="--ax:80%;--ay:20%">
+    <div class="wrap booking">
+      <div>
+        <span class="eyebrow" data-decode>Онлайн-запись</span>
+        <h2 class="wipe" style="margin-top:18px">Выберите <em>время</em></h2>
+        <p class="lead sweep" style="margin-top:22px">Отметьте день и время. Администратор перезвонит в течение 15 минут и подтвердит запись.</p>
+        <div class="contact-list">
+          <div><span>Телефон</span><b id="phoneTxt">+7 (900) 555-27-27</b><button class="copy" data-copy="phoneTxt">Копировать</button></div>
+          <div><span>Адрес</span><b id="addrTxt">Промышленный проезд, 12, бокс 3</b><button class="copy" data-copy="addrTxt">Копировать</button></div>
+          <div><span>Часы</span><b>Ежедневно 9:00–22:00</b></div>
+        </div>
+      </div>
+      <div id="bookBox">
+        <form class="book-form" id="bookForm" novalidate>
+          <div class="field"><label class="lbl-t" for="bService">Услуга</label><select id="bService"></select></div>
+          <div>
+            <div class="pick-head"><span class="lbl-t">Дата</span><div class="arrows"><button type="button" id="dPrev" aria-label="Предыдущие дни">←</button><button type="button" id="dNext" aria-label="Следующие дни">→</button></div></div>
+            <div class="days-frame"><div class="days" id="days"></div></div>
+          </div>
+          <div><span class="lbl-t">Время</span><div class="slots" id="slots"></div></div>
+          <div class="fields">
+            <div class="field"><label class="lbl-t" for="bName">Имя</label><input id="bName" autocomplete="name" placeholder="Как к вам обращаться"></div>
+            <div class="field"><label class="lbl-t" for="bPhone">Телефон</label><input id="bPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__"></div>
+            <div class="field full"><label class="lbl-t" for="bCar">Автомобиль</label><input id="bCar" placeholder="Марка, модель, цвет"></div>
+            <div class="field full"><label class="lbl-t" for="bNote">Комментарий</label><input id="bNote" placeholder="Например: скол на капоте, детское кресло"></div>
+          </div>
+          <p class="err" id="bErr" role="alert"></p>
+          <button class="btn" type="submit">Отправить заявку</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="eyebrow" data-decode>Вопросы</span><h2 class="wipe">Частые <em>вопросы</em></h2></div>
+      </div>
+      <div class="faq">
+        <details class="fade"><summary>Сколько держится керамика?</summary><p>Два слоя 9H держатся до пяти лет, если мыть машину раз в две недели нейтральной химией. На этот срок выдаём паспорт покрытия с гарантией.</p></details>
+        <details class="fade"><summary>Можно оставить машину на ночь?</summary><p>Да. Машины стоят в закрытых боксах, студию круглосуточно охраняют и снимают камеры. Ключи лежат в сейфе.</p></details>
+        <details class="fade"><summary>Чем ваша мойка отличается от обычной?</summary><p>Мы касаемся кузова только после того, как пена смоет песок и абразивную грязь. Для верха и низа берём разные варежки, сушим фильтрованным воздухом. Новые царапины так не появляются.</p></details>
+        <details class="fade"><summary>Как оплатить?</summary><p>Картой, по QR-коду или по счёту для юрлиц. Предоплату берём только за работы дольше одного дня.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="logo" href="#top" aria-label="ЗЕРКАЛО, наверх"><i aria-hidden="true"></i><b>ЗЕРКАЛО</b></a>
+        <p>Студия детейлинга: ручная мойка, полировка, керамика, плёнка и химчистка салона.</p>
+      </div>
+      <nav class="foot-col" aria-label="Разделы сайта">
+        <h4>Разделы</h4>
+        <ul><li><a href="#services">Услуги</a></li><li><a href="#works">Наши работы</a></li><li><a href="#calc">Калькулятор</a></li><li><a href="#hydro">Тест керамики</a></li><li><a href="#plans">Абонементы</a></li><li><a href="#faq">Вопросы</a></li><li><a href="#book">Запись</a></li></ul>
+      </nav>
+      <nav class="foot-col" aria-label="Услуги">
+        <h4>Услуги</h4>
+        <ul><li><a href="#services" data-cat="Мойка">Двухфазная мойка</a></li><li><a href="#services" data-cat="Детейлинг">Полировка кузова</a></li><li><a href="#services" data-cat="Защита">Керамика 9H</a></li><li><a href="#services" data-cat="Защита">Защитная плёнка</a></li><li><a href="#services" data-cat="Интерьер">Химчистка салона</a></li><li><button type="button" data-doc>Политика обработки персональных данных</button></li><li><button type="button" data-doc>Публичная оферта</button></li></ul>
+      </nav>
+      <div class="foot-contacts">
+        <h4>Контакты</h4>
+        <a class="big" href="tel:+79005552727">+7 (900) 555-27-27</a>
+        <a class="big" href="mailto:hello@zerkalo-detailing.ru">hello@zerkalo-detailing.ru</a>
+        <span>Промышленный проезд, 12, бокс 3<br>Ежедневно 9:00–22:00, без выходных</span>
+        <div class="foot-social"><a href="#book">Telegram</a><a href="#book">WhatsApp</a><a href="#book">VK</a></div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>ИП Фамилия И. О., ИНН 000000000000, ОГРНИП 000000000000000</span>
+      <span>© 2026 Студия детейлинга «Зеркало». Все права защищены.</span>
+    </div>
+  </div>
+</footer>
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
